@@ -1,0 +1,2 @@
+install_name_tool -change @rpath/mujoco.framework/Versions/A/libmujoco.2.2.0.dylib /Users/chunming/Documents/mujoco/bin/libmujoco.2.2.0.dylib main
+install_name_tool -change /opt/homebrew/opt/glfw/lib/libglfw.3.dylib /Users/chunming/Documents/mujoco/bin/libglfw.3.3.dylib main

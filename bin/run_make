@@ -1,0 +1,3 @@
+reset
+make -f makefile clean -C ../sample
+make -f makefile -C ../sample
