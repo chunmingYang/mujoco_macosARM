@@ -1,0 +1,42 @@
+# steps to set up development environment on M1
+- install gcc from homebrew (https://www.youtube.com/watch?v=wY24ehH6mC0)
+- install glfw from homebrew (https://formulae.brew.sh/formula/glfw)
+- download mujoco arm version "macos_universal" from mujoco official website
+- build the customized mujoco development folder follow structure:
+    mujoco
+        bin       -- for storing dynamic libraries
+        include   -- for storing header files
+        sample    -- for stroing source codes
+        model     -- for storing xml files
+- customized folders configuration
+    mujoco
+        bin
+            libglfw.3.3.dylib (using command line "ln" to create a link)
+            libmujoco.2.2.0.dylib (copy paste from mujoco.framework)
+            run_make.txt (custom file)
+            run_change.txt (custom file)
+            run.txt (custom file)
+        include
+            glfw3.h (using command line "ln" to create a link)
+            a1_main.h (custom file)
+            mujoco
+                mjdata.h (copy paste from mujoco.framework)
+                mjexport.h (copy paste from mujoco.framework)
+                mjmodel.h (copy paste from mujoco.framework)
+                mjrender.h (copy paste from mujoco.framework)
+                mjnum.h (copy paste from mujoco.framework)
+                mjui.h (copy paste from mujoco.framework)
+                mjvisualize.h (copy paste from mujoco.framework)
+                mjxmacro.h (copy paste from mujoco.framework)
+                mujoco.h (copy paste from mujoco.framework)
+        model
+            a1mesh (custom model folder)
+            a1.xml (custom file)
+        sample
+            main.c, my_controller.c (custom source code files)
+            makefile
+- makefile and run_make.txt configuration
+- run_change.txt change the running time dynamic libraries search path
+    search for current exe file running time libraries searching path ($ otool -L main)
+    using install_name_tool to change the running time libraries searching path (install_name_tool -change @rpath/mujoco.framework/Versions/A/libmujoco.2.2.0.dylib /Users/chunming/Documents/MuJoCo_01/bin/libmujoco.2.2.0.dylib main)
+- run.txt configuration
